@@ -14,8 +14,6 @@ class Gasto extends Model
     
     public function personas() : BelongsToMany
     {
-        return $this->belongsToMany(Persona::class)
-            ->withPivot('cantidad')
-            ->withTimestamps();
+        return $this->belongsToMany(Persona::class);
     }
 }

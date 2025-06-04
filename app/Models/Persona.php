@@ -10,12 +10,10 @@ class Persona extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nombre', 'apellido'];
+    protected $fillable = ['nombre'];
     
     public function gastos() : BelongsToMany
     {
-        return $this->belongsToMany(Gasto::class)
-            ->withPivot('cantidad')
-            ->withTimestamps();
+        return $this->belongsToMany(Gasto::class);
     }
 }
