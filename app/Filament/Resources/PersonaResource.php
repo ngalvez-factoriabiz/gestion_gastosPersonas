@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PersonaResource\Pages;
 use App\Models\Persona;
 use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -23,7 +24,13 @@ class PersonaResource extends Resource
                 TextInput::make('nombre')->required(),
                 CheckboxList::make('gastos')
                     ->relationship('gastos', 'concepto')
-                    ->columns(2)
+                    ->columns(2),
+                Select::make('gastos')
+                    ->label('Gastos asociados')
+                    ->relationship('gastos', 'concepto')
+                    ->multiple()
+                    ->searchable()
+                    ->preload()
             ]);
     }
 
@@ -50,7 +57,7 @@ class PersonaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\PersonaResource\RelationManagers\GastosRelationManager::class,
         ];
     }
 

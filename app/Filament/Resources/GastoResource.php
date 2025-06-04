@@ -6,6 +6,7 @@ use App\Filament\Resources\GastoResource\Pages;
 use App\Models\Gasto;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,7 +27,14 @@ class GastoResource extends Resource
                 DatePicker::make('fecha')->required(),
                 CheckboxList::make('personas')
                     ->relationship('personas', 'nombre')
-                    ->columns(2)
+                    ->columns(2),
+                
+                Select::make('personas')
+                    ->relationship('personas', 'nombre')
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
+                    ->label('Personas'),
             ]);
     }
 
