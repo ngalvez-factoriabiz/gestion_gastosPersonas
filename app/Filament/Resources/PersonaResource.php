@@ -22,9 +22,6 @@ class PersonaResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nombre')->required(),
-                CheckboxList::make('gastos')
-                    ->relationship('gastos', 'concepto')
-                    ->columns(2),
                 Select::make('gastos')
                     ->label('Gastos asociados')
                     ->relationship('gastos', 'concepto')
@@ -41,8 +38,7 @@ class PersonaResource extends Resource
                 TextColumn::make('nombre'),
                 TextColumn::make('gastos.concepto')
                     ->label('Gastos')
-                    ->badge()
-                    ->separator(', '),
+                    ->badge(),
             ])
             ->filters([])
             ->actions([

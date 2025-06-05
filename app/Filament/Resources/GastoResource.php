@@ -25,10 +25,6 @@ class GastoResource extends Resource
                 TextInput::make('concepto')->required(),
                 TextInput::make('cantidad')->numeric()->required(),
                 DatePicker::make('fecha')->required(),
-                CheckboxList::make('personas')
-                    ->relationship('personas', 'nombre')
-                    ->columns(2),
-                
                 Select::make('personas')
                     ->relationship('personas', 'nombre')
                     ->multiple()
